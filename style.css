@@ -1,0 +1,748 @@
+/* =====================================================
+   style.css
+   骨格標本3Dビューア UI
+===================================================== */
+
+
+
+/* -----------------------------
+   全体
+----------------------------- */
+
+* {
+
+    box-sizing: border-box;
+
+}
+
+
+
+body {
+
+    margin: 0;
+
+    padding: 0;
+
+    font-family:
+
+        "Noto Sans JP",
+        "Segoe UI",
+        sans-serif;
+
+
+    background:
+
+        #f2f2f2;
+
+
+    color:
+
+        #222;
+
+}
+
+
+
+
+/* -----------------------------
+   Header
+----------------------------- */
+
+
+header {
+
+
+    background:
+
+        #222;
+
+
+    color:
+
+        white;
+
+
+    padding:
+
+        20px;
+
+
+    text-align:
+
+        center;
+
+
+}
+
+
+
+header h1 {
+
+
+    margin:
+
+        0;
+
+
+    font-size:
+
+        28px;
+
+
+}
+
+
+
+header p {
+
+
+    margin:
+
+        5px 0 0;
+
+
+    opacity:
+
+        0.8;
+
+
+}
+
+
+
+
+
+/* -----------------------------
+   Main Layout
+----------------------------- */
+
+
+main {
+
+
+    display:
+
+        flex;
+
+
+    gap:
+
+        20px;
+
+
+    padding:
+
+        20px;
+
+
+}
+
+
+
+
+/* -----------------------------
+   3D Viewer
+----------------------------- */
+
+
+.viewer-area {
+
+
+    flex:
+
+        3;
+
+
+    min-height:
+
+        600px;
+
+
+    background:
+
+        white;
+
+
+    border-radius:
+
+        15px;
+
+
+    overflow:
+
+        hidden;
+
+
+    box-shadow:
+
+        0 4px 15px rgba(0,0,0,0.15);
+
+
+}
+
+
+
+model-viewer {
+
+
+    width:
+
+        100%;
+
+
+    height:
+
+        600px;
+
+
+    background:
+
+        #eeeeee;
+
+
+}
+
+
+
+
+
+/* -----------------------------
+   Control Area
+----------------------------- */
+
+
+.control-area {
+
+
+    flex:
+
+        1;
+
+
+    min-width:
+
+        300px;
+
+
+}
+
+
+
+.control-area > div {
+
+
+    background:
+
+        white;
+
+
+    margin-bottom:
+
+        15px;
+
+
+    padding:
+
+        15px;
+
+
+    border-radius:
+
+        12px;
+
+
+    box-shadow:
+
+        0 3px 10px rgba(0,0,0,0.12);
+
+
+}
+
+
+
+h2 {
+
+
+    margin-top:
+
+        0;
+
+
+    font-size:
+
+        20px;
+
+
+}
+
+
+
+
+
+/* -----------------------------
+   標本選択
+----------------------------- */
+
+
+select {
+
+
+    width:
+
+        100%;
+
+
+    padding:
+
+        10px;
+
+
+    font-size:
+
+        16px;
+
+
+    border-radius:
+
+        8px;
+
+
+    border:
+
+        1px solid #aaa;
+
+
+}
+
+
+
+
+
+
+
+/* -----------------------------
+   部位ボタン
+----------------------------- */
+
+
+#panel {
+
+
+    display:
+
+        flex;
+
+
+    flex-wrap:
+
+        wrap;
+
+
+    gap:
+
+        8px;
+
+
+}
+
+
+
+.partButton {
+
+
+    padding:
+
+        10px 15px;
+
+
+    border:
+
+        none;
+
+
+    border-radius:
+
+        20px;
+
+
+    background:
+
+        #dddddd;
+
+
+    cursor:
+
+        pointer;
+
+
+    transition:
+
+        0.2s;
+
+
+    font-size:
+
+        14px;
+
+
+}
+
+
+
+
+.partButton:hover {
+
+
+    background:
+
+        #bbbbbb;
+
+
+}
+
+
+
+
+.partButton.active {
+
+
+    background:
+
+        #333;
+
+
+    color:
+
+        white;
+
+
+}
+
+
+
+
+
+/* -----------------------------
+   説明
+----------------------------- */
+
+
+#info {
+
+
+    min-height:
+
+        120px;
+
+
+    line-height:
+
+        1.6;
+
+
+}
+
+
+
+#info h2 {
+
+
+    border-bottom:
+
+        2px solid #333;
+
+
+    padding-bottom:
+
+        5px;
+
+
+}
+
+
+
+
+
+
+/* -----------------------------
+   Hotspot
+----------------------------- */
+
+
+.hotspot {
+
+
+    width:
+
+        30px;
+
+
+    height:
+
+        30px;
+
+
+    border:
+
+        none;
+
+
+    background:
+
+        transparent;
+
+
+    cursor:
+
+        pointer;
+
+
+}
+
+
+
+.pin-dot {
+
+
+    width:
+
+        18px;
+
+
+    height:
+
+        18px;
+
+
+    border-radius:
+
+        50%;
+
+
+    background:
+
+        red;
+
+
+    border:
+
+        3px solid white;
+
+
+    box-shadow:
+
+        0 0 10px rgba(255,0,0,0.7);
+
+
+    animation:
+
+        pulse 1.5s infinite;
+
+
+}
+
+
+
+@keyframes pulse {
+
+
+    0% {
+
+        transform:
+
+            scale(1);
+
+    }
+
+
+    50% {
+
+        transform:
+
+            scale(1.3);
+
+    }
+
+
+    100% {
+
+        transform:
+
+            scale(1);
+
+    }
+
+
+}
+
+
+
+
+
+
+
+/* -----------------------------
+   標本情報
+----------------------------- */
+
+
+.specimen-info {
+
+
+    margin:
+
+        20px;
+
+
+    background:
+
+        white;
+
+
+    padding:
+
+        20px;
+
+
+    border-radius:
+
+        15px;
+
+
+    box-shadow:
+
+        0 4px 12px rgba(0,0,0,0.15);
+
+
+}
+
+
+
+table {
+
+
+    width:
+
+        100%;
+
+
+    border-collapse:
+
+        collapse;
+
+
+}
+
+
+
+th {
+
+
+    width:
+
+        25%;
+
+
+    background:
+
+        #eeeeee;
+
+
+}
+
+
+
+th,
+td {
+
+
+    padding:
+
+        10px;
+
+
+    border:
+
+        1px solid #ccc;
+
+
+}
+
+
+
+
+
+
+
+/* -----------------------------
+   Footer
+----------------------------- */
+
+
+footer {
+
+
+    text-align:
+
+        center;
+
+
+    padding:
+
+        20px;
+
+
+    color:
+
+        #666;
+
+
+}
+
+
+
+
+
+/* -----------------------------
+   Mobile
+----------------------------- */
+
+
+@media(max-width:900px){
+
+
+    main {
+
+
+        flex-direction:
+
+            column;
+
+
+    }
+
+
+
+    model-viewer {
+
+
+        height:
+
+            450px;
+
+
+    }
+
+
+    .control-area {
+
+
+        width:
+
+            100%;
+
+
+    }
+
+
+}
