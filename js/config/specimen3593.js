@@ -5,7 +5,7 @@
 
 export const specimen3593 = {
 
-    id: "3593",
+    id: "SINH-MA-835",
 
     file: "models/3593_bear.glb",
 
@@ -13,13 +13,13 @@ export const specimen3593 = {
 
     species: "Ursus arctos",
 
-    age: "成体",
+    age: "成獣",
 
-    sex: "不明",
+    sex: "♀",
 
-    location: "北海道",
+    location: "北海道オホーツク地方",
 
-    date: "----",
+    date: "2004年11月16日",
 
     condition: "良好",
 
