@@ -20,7 +20,7 @@ export const specimen4127 = {
 
 
     species:
-    "Ursus arctos",
+    "Ursus thibetanus",
 
 
     age:
