@@ -9,7 +9,7 @@
 export const specimen4127 = {
 
 
-    id: "4127",
+    id: "SINH-MA-770",
 
 
     file: "models/4127_bear.glb",
@@ -59,7 +59,7 @@ export const specimen4127 = {
 
 
             text:
-            "標本4127の頭頂部。"
+            "標本SINH-MA-770の頭頂部。"
 
         }
 
