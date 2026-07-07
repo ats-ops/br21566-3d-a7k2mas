@@ -1,3 +1,5 @@
+
+
 // =====================================================
 // specimen4127.js
 // 標本番号 4127
@@ -14,7 +16,7 @@ export const specimen4127 = {
 
 
     name:
-    "ヒグマ頭骨（標本4127）",
+    "ツキノワグマ頭骨（標本SINH-MA-770）",
 
 
     species:
@@ -22,7 +24,7 @@ export const specimen4127 = {
 
 
     age:
-    "成体",
+    "成獣",
 
 
     sex:
@@ -30,11 +32,11 @@ export const specimen4127 = {
 
 
     location:
-    "北海道",
+    "栃木県日光市鬼怒川温泉",
 
 
     date:
-    "----",
+    "2000年",
 
 
     condition:
