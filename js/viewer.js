@@ -22,7 +22,6 @@ import {
     clearActiveButton
 
 } from "./ui.js";
-let currentPart = null;
 
 import {
 
@@ -164,7 +163,6 @@ function showPart(partName){
 
         showDefaultInfo(info);
 
-        // 比較パネル初期化
         document.getElementById("compare-content").innerHTML =
             "部位を選択してください。";
 
@@ -172,25 +170,6 @@ function showPart(partName){
 
         return;
     }
-    function showCompare(partName){
-
-    const compare = document.getElementById("compare-content");
-
-    const brown = specimens["3593"].parts[partName];
-    const black = specimens["4127"].parts[partName];
-
-    compare.innerHTML = `
-        <h3>${partName}</h3>
-
-        <h4>ヒグマ（3593）</h4>
-        <p>${brown.text}</p>
-
-        <hr>
-
-        <h4>ツキノワグマ（4127）</h4>
-        <p>${black.text}</p>
-    `;
-}
 
     currentPart = partName;
 
@@ -217,19 +196,37 @@ function showPart(partName){
 }
 
 
-    // 説明表示
+// =====================================================
+// 比較表示
+// =====================================================
 
-    showDescription(
+function showCompare(partName){
 
-        info,
+    const compare =
+        document.getElementById("compare-content");
 
-        part
+    const brown =
+        specimens["3593"].parts[partName];
 
-    );
+    const black =
+        specimens["4127"].parts[partName];
 
+    compare.innerHTML = `
 
+        <h3>${partName}</h3>
+
+        <h4>ヒグマ（3593）</h4>
+
+        <p>${brown.text}</p>
+
+        <hr>
+
+        <h4>ツキノワグマ（4127）</h4>
+
+        <p>${black.text}</p>
+
+    `;
 }
-
 
 
 // =====================================================
@@ -300,7 +297,10 @@ if(modelSelect){
         }
 
     );
+currentPart = null;
 
+document.getElementById("compare-content").innerHTML =
+    "部位を選択してください。";
 
 }
 
