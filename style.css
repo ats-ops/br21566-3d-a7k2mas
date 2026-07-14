@@ -147,10 +147,9 @@ main {
 
 .viewer-area {
 
+   position: relative;
 
-    flex:
-
-        3;
+    flex: 3;
 
 
     min-height:
@@ -749,12 +748,6 @@ footer {
 /*=============================
     比較パネル
 ==============================*/
-
-.viewer-area{
-
-    position:relative;
-
-}
 
 
 
