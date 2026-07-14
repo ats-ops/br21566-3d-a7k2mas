@@ -7,403 +7,239 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-
-<title>
-骨格標本3Dビューア
-</title>
-
+<title>骨格標本3Dビューア</title>
 
 <link rel="stylesheet" href="style.css">
 
-
-
-<!-- model-viewer -->
-
-<script type="module"
+<script
+type="module"
 src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js">
 </script>
 
-
 </head>
-
-
 
 <body>
 
-
 <header>
 
-<h1>
-骨格標本 3Dビューア
-</h1>
+    <h1>骨格標本 3Dビューア</h1>
 
-<p>
-3D Scan Specimen Viewer
-</p>
-
+    <p>3D Scan Specimen Viewer</p>
 
 </header>
 
-
-
 <main>
 
+    <!-- =========================
+         3D Viewer
+    ========================= -->
 
+    <section class="viewer-area">
 
-<!-- =========================
-     3D Viewer
-========================= -->
+        <model-viewer
 
+            id="viewer"
 
-<section class="viewer-area">
+            src="models/3593_bear.glb"
 
+            camera-controls
 
-<model-viewer
+            touch-action="pan-y"
 
+            ar
 
-id="viewer"
+            ar-modes="webxr scene-viewer quick-look"
 
+            shadow-intensity="1"
 
-src="models/3593_bear.glb"
+            environment-image="neutral"
 
+            exposure="0.8"
 
+            tone-mapping="neutral"
 
-camera-controls
+            auto-rotate
 
+            rotation-per-second="12deg"
 
-touch-action="pan-y"
+            camera-orbit="90deg 75deg 5m"
 
+            field-of-view="40deg"
 
+            interaction-prompt="auto"
 
-ar
+            loading="eager">
 
+        </model-viewer>
 
-ar-modes="
-webxr scene-viewer quick-look
-"
+    </section>
 
 
 
-shadow-intensity="1"
+    <!-- =========================
+         右側UI
+    ========================= -->
 
+    <section class="control-area">
 
 
-environment-image="neutral"
+        <!-- =========================
+             標本比較
+        ========================= -->
 
+        <div id="compare-panel">
 
+            <h2>標本比較</h2>
 
-exposure="0.55"
+            <div id="compare-content">
 
+                部位を選択すると比較が表示されます。
 
+            </div>
 
-tone-mapping="neutral"
+        </div>
 
 
 
-auto-rotate
+        <!-- =========================
+             標本選択
+        ========================= -->
 
+        <div class="model-select">
 
+            <h2>標本選択</h2>
 
-rotation-per-second="12deg"
+            <select id="model-select">
 
+                <option value="3593">
 
+                    SINH-MA-835　ヒグマ頭骨
 
-camera-orbit="90deg 75deg 5m"
+                </option>
 
+                <option value="4127">
 
+                    SINH-MA-770　ツキノワグマ頭骨
 
-field-of-view="40deg"
+                </option>
 
+            </select>
 
+        </div>
 
-interaction-prompt="auto"
 
 
+        <!-- =========================
+             部位一覧
+        ========================= -->
 
-loading="eager"
+        <div>
 
+            <h2>部位一覧</h2>
 
->
+            <div id="panel">
 
+            </div>
 
-</model-viewer>
-<div id="compare-panel">
-     <h2>標本比較</h2>
-<div id="compare-content">
-     部位を選択してください
-</div>
-</div>
-</section>
+        </div>
 
 
 
+        <!-- =========================
+             説明
+        ========================= -->
 
+        <div id="info">
 
-<!-- =========================
-     操作パネル
-========================= -->
+            <h2>操作方法</h2>
 
+            <p>
 
-<section class="control-area">
+                左側の部位ボタンを選択してください。
 
+            </p>
 
+        </div>
 
-<!-- 標本切替 -->
-
-<div class="model-select">
-
-
-<h2>
-標本選択
-</h2>
-
-
-<select id="model-select">
-
-
-<option value="3593">
-
-SINH-MA-835 ヒグマ頭骨
-
-</option>
-
-
-
-<option value="4127">
-
-SINH-MA-770 ツキノワグマ頭骨
-
-</option>
-
-
-</select>
-
-
-</div>
-
-
-
-
-
-<!-- 部位一覧 -->
-
-
-<div>
-
-
-<h2>
-部位一覧
-</h2>
-
-
-<div id="panel">
-
-
-</div>
-
-
-</div>
-
-
-
-
-
-<!-- 説明 -->
-
-<div id="info">
-
-
-<h2>
-操作方法
-</h2>
-
-
-<p>
-
-部位を選択してください。
-
-</p>
-
-
-</div>
-
-
-
-</section>
-
-
+    </section>
 
 </main>
-
-
-
-
-
-
 <!-- =========================
      標本情報
 ========================= -->
 
-
 <section class="specimen-info">
 
+    <h2>標本情報</h2>
 
-<h2>
-標本情報
-</h2>
+    <table>
 
+        <tr>
+            <th>標本名</th>
+            <td id="specimen-name">-</td>
+        </tr>
 
+        <tr>
+            <th>学名</th>
+            <td id="species">-</td>
+        </tr>
 
-<table>
+        <tr>
+            <th>個体情報</th>
+            <td id="age">-</td>
+        </tr>
 
+        <tr>
+            <th>性別</th>
+            <td id="sex">-</td>
+        </tr>
 
-<tr>
+        <tr>
+            <th>取得場所</th>
+            <td id="location">-</td>
+        </tr>
 
-<th>
-標本名
-</th>
+        <tr>
+            <th>取得日</th>
+            <td id="date">-</td>
+        </tr>
 
-<td id="specimen-name">
--
-</td>
+        <tr>
+            <th>保存状態</th>
+            <td id="condition">-</td>
+        </tr>
 
-</tr>
+        <tr>
+            <th>標本番号</th>
+            <td id="specimen-id">-</td>
+        </tr>
 
-
-
-<tr>
-
-<th>
-学名
-</th>
-
-<td id="species">
--
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<th>
-個体情報
-</th>
-
-<td id="age">
--
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<th>
-性別
-</th>
-
-<td id="sex">
--
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<th>
-取得場所
-</th>
-
-<td id="location">
--
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<th>
-取得日
-</th>
-
-<td id="date">
--
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<th>
-保存状態
-</th>
-
-<td id="condition">
--
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<th>
-標本番号
-</th>
-
-<td id="specimen-id">
--
-</td>
-
-</tr>
-
-
-
-</table>
-
+    </table>
 
 </section>
 
 
 
-
-
-
+<!-- =========================
+     Footer
+========================= -->
 
 <footer>
 
-
-<p>
-
-© 3D Specimen Viewer
-
-</p>
-
+    <p>
+        © 2026 Bear Skull 3D Viewer
+    </p>
 
 </footer>
 
 
 
-
-
-<!-- JavaScript -->
-
+<!-- =========================
+     JavaScript
+========================= -->
 
 <script type="module" src="js/viewer.js"></script>
 
-
-
 </body>
-
 
 </html>
