@@ -51,7 +51,7 @@ export const specimen4127 = {
 
             name:"頭頂部",
 
-            position:"-15.023 85.368 -17",
+            position:"30.023 85.368 17",
 
             text:
             "頭蓋骨の最上部。脳を保護する役割を持つ部位。"
