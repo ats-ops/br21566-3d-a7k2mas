@@ -8,9 +8,8 @@
 // Import
 // -----------------------------
 
-import { specimens } 
+import { specimens }
 from "./config/index.js";
-
 
 import {
 
@@ -32,8 +31,6 @@ import {
 } from "./hotspot.js";
 
 
-
-
 // -----------------------------
 // DOM取得
 // -----------------------------
@@ -41,20 +38,20 @@ import {
 const viewer =
     document.getElementById("viewer");
 
+const previewViewer =
+    document.getElementById("preview-viewer");
 
 const panel =
     document.getElementById("panel");
 
-
 const info =
     document.getElementById("info");
-
-
 
 const modelSelect =
     document.getElementById("model-select");
 
-
+const compareContent =
+    document.getElementById("compare-content");
 
 
 // -----------------------------
@@ -66,19 +63,42 @@ let currentSpecimenID = "3593";
 let currentSpecimen =
     specimens[currentSpecimenID];
 
-
+let currentPart = null;
 
 
 // =====================================================
-// 標本変更
+// 比較モデル更新
 // =====================================================
 
+function updatePreviewModel(){
+
+    if(!previewViewer){
+
+        return;
+
+    }
+
+    if(currentSpecimenID === "3593"){
+
+        previewViewer.src =
+            specimens["4127"].file;
+
+    }
+    else{
+
+        previewViewer.src =
+            specimens["3593"].file;
+
+    }
+
+}
 // =====================================================
 // 標本変更
 // =====================================================
 
 function changeModel(id){
 
+    // 存在確認
     if(!specimens[id]){
 
         console.error(
@@ -90,23 +110,25 @@ function changeModel(id){
 
     }
 
-    // 現在の標本更新
+    // 現在の標本を更新
     currentSpecimenID = id;
 
     currentSpecimen =
         specimens[id];
 
-    // モデル変更
+    // メインモデル変更
     viewer.src =
         currentSpecimen.file;
+
+    // 比較モデル更新
+    updatePreviewModel();
 
     // ピン削除
     clearAllPins(viewer);
 
-    // ボタン選択解除
+    // 選択解除
     clearActiveButton();
 
-    // 選択部位解除
     currentPart = null;
 
     // 標本情報更新
@@ -114,35 +136,57 @@ function changeModel(id){
         currentSpecimen
     );
 
-    // 部位ボタン再生成
+    // 部位ボタン生成
     createPartButtons(
+
         panel,
+
         currentSpecimen,
+
         showPart
+
     );
 
-    // 説明を初期状態に戻す
+    // 説明を初期状態へ
     showDefaultInfo(info);
 
-    // 比較パネル初期化
-    const compare =
-        document.getElementById("compare-content");
+    // 比較説明を初期状態へ
+    if(compareContent){
 
-    if(compare){
-
-        compare.innerHTML =
-            "部位を選択してください。";
+        compareContent.innerHTML = `
+            部位を選択すると、
+            比較標本が表示されます。
+        `;
 
     }
 
 }
 
+
+// =====================================================
+// モデル選択
+// =====================================================
+
+if(modelSelect){
+
+    modelSelect.addEventListener(
+
+        "change",
+
+        (event)=>{
+
+            changeModel(
+                event.target.value
+            );
+
+        }
+
+    );
+
+}
 // =====================================================
 // 部位選択
 // =====================================================
-
-// 現在選択中の部位
-let currentPart = null;
 
 function showPart(partName){
 
@@ -155,72 +199,131 @@ function showPart(partName){
 
         showDefaultInfo(info);
 
-        document.getElementById("compare-content").innerHTML =
-            "部位を選択してください。";
+        if(compareContent){
+
+            compareContent.innerHTML =
+                "部位を選択してください。";
+
+        }
 
         currentPart = null;
 
         return;
+
     }
 
     currentPart = partName;
 
-    const part = getPartData(currentSpecimen, partName);
+    const part =
+        getPartData(
+            currentSpecimen,
+            partName
+        );
 
     if(!part){
+
         return;
+
     }
 
-    // ピン表示
+    // メインモデルにピン表示
     createPin(
+
         viewer,
+
         part,
+
         (selectedPart)=>{
-            showDescription(info, selectedPart);
+
+            showDescription(
+                info,
+                selectedPart
+            );
+
         }
+
     );
 
     // 説明表示
-    showDescription(info, part);
+    showDescription(
+        info,
+        part
+    );
 
-    // 比較表示
-    showCompare(partName);
+
+
+    // ==========================
+    // 比較モデル更新
+    // ==========================
+
+    const compareID =
+        currentSpecimenID === "3593"
+            ? "4127"
+            : "3593";
+
+    const comparePart =
+        specimens[compareID].parts[partName];
+
+    if(previewViewer){
+
+        previewViewer.src =
+            specimens[compareID].file;
+
+        if(comparePart){
+
+            if(comparePart.orbit){
+
+                previewViewer.cameraOrbit =
+                    comparePart.orbit;
+
+            }
+
+            if(comparePart.target){
+
+                previewViewer.cameraTarget =
+                    comparePart.target;
+
+            }
+
+        }
+
+    }
+
+
+
+    // ==========================
+    // 比較説明
+    // ==========================
+
+    if(compareContent){
+
+        compareContent.innerHTML = `
+
+            <h3>${partName}</h3>
+
+            <h4>${currentSpecimen.name}</h4>
+
+            <p>${part.text}</p>
+
+            <hr>
+
+            <h4>${specimens[compareID].name}</h4>
+
+            <p>
+
+                ${
+                    comparePart
+                        ? comparePart.text
+                        : "この部位のデータはありません。"
+                }
+
+            </p>
+
+        `;
+
+    }
+
 }
-
-
-// =====================================================
-// 比較表示
-// =====================================================
-
-function showCompare(partName){
-
-    const compare =
-        document.getElementById("compare-content");
-
-    const brown =
-        specimens["3593"].parts[partName];
-
-    const black =
-        specimens["4127"].parts[partName];
-
-    compare.innerHTML = `
-
-        <h3>${partName}</h3>
-
-        <h4>ヒグマ（3593）</h4>
-
-        <p>${brown.text}</p>
-
-        <hr>
-
-        <h4>ツキノワグマ（4127）</h4>
-
-        <p>${black.text}</p>
-
-    `;
-}
-
-
 // =====================================================
 // model-viewer 読込完了
 // =====================================================
@@ -231,17 +334,13 @@ viewer.addEventListener(
 
     ()=>{
 
-
         console.log(
             "3Dモデル読み込み完了"
         );
 
-
     }
 
 );
-
-
 
 
 // =====================================================
@@ -254,45 +353,13 @@ viewer.addEventListener(
 
     ()=>{
 
-
         alert(
-            "GLBモデルを読み込めませんでした"
+            "GLBモデルを読み込めませんでした。"
         );
-
 
     }
 
 );
-
-
-
-
-// =====================================================
-// モデル選択UI
-// =====================================================
-
-if(modelSelect){
-
-
-    modelSelect.addEventListener(
-
-        "change",
-
-        (event)=>{
-
-
-            changeModel(
-                event.target.value
-            );
-
-
-        }
-
-    );
-
-}
-
-
 
 
 // =====================================================
@@ -301,16 +368,14 @@ if(modelSelect){
 
 function initialize(){
 
-
-
+    // 標本情報
     updateSpecimenInfo(
 
         currentSpecimen
 
     );
 
-
-
+    // 部位ボタン生成
     createPartButtons(
 
         panel,
@@ -321,23 +386,32 @@ function initialize(){
 
     );
 
-
-
+    // 説明初期化
     showDefaultInfo(
 
         info
 
     );
 
+    // 比較モデル表示
+    updatePreviewModel();
 
+    // 比較説明初期化
+    if(compareContent){
+
+        compareContent.innerHTML =
+
+            "部位を選択すると比較標本が表示されます。";
+
+    }
 
     console.log(
+
         "Viewer Initialized"
+
     );
 
-
 }
-
 
 
 // =====================================================
@@ -350,17 +424,16 @@ window.addEventListener(
 
     ()=>{
 
-
         initialize();
-
 
     }
 
 );
 
 
-
+// =====================================================
 // デバッグ用
+// =====================================================
 
 window.viewerApp = {
 
@@ -368,6 +441,10 @@ window.viewerApp = {
 
     showPart,
 
-    specimens
+    specimens,
+
+    viewer,
+
+    previewViewer
 
 };
