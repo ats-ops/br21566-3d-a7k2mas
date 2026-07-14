@@ -749,80 +749,58 @@ footer {
     比較パネル
 ==============================*/
 
-
-
 #compare-panel{
 
-    position:absolute;
-
-    top:20px;
-
-    right:20px;
-
-    width:300px;
-
-    max-height:420px;
-
-    overflow:auto;
-
-    background:rgba(0,0,0,0.82);
+    background:#222;
 
     color:white;
 
+    padding:15px;
+
     border-radius:12px;
 
-    padding:18px;
+    margin-bottom:15px;
 
-    z-index:50;
-
-    backdrop-filter:blur(5px);
-
-    box-shadow:0 0 20px rgba(0,0,0,.45);
+    box-shadow:0 3px 10px rgba(0,0,0,.2);
 
 }
-
-
 
 #compare-panel h2{
 
     margin-top:0;
 
+    margin-bottom:10px;
+
     font-size:20px;
 
     border-bottom:1px solid rgba(255,255,255,.3);
 
-    padding-bottom:8px;
+    padding-bottom:6px;
 
 }
 
-
-
-#compare-panel h4{
-
-    margin:12px 0 6px;
-
-    color:#ffd54f;
-
-}
-
-
-
-#compare-panel p{
-
-    margin:0;
+#compare-content{
 
     line-height:1.6;
 
+    font-size:15px;
+
 }
 
+#compare-panel h4{
 
+    color:#ffd54f;
+
+    margin:12px 0 6px;
+
+}
 
 #compare-panel hr{
 
     border:none;
 
-    border-top:1px solid rgba(255,255,255,.25);
+    border-top:1px solid rgba(255,255,255,.2);
 
-    margin:15px 0;
+    margin:12px 0;
 
 }
