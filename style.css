@@ -804,3 +804,143 @@ footer {
     margin:12px 0;
 
 }
+/* =====================================
+   新UI
+===================================== */
+
+
+/* Viewerを広げる */
+
+.viewer-area{
+
+    flex:4;
+
+}
+
+
+.control-area{
+
+    flex:1;
+
+}
+
+
+
+/* 部位ボタン */
+
+.partButton{
+
+    width:100%;
+
+    height:48px;
+
+    margin-bottom:8px;
+
+    font-size:16px;
+
+    border-radius:12px;
+
+}
+
+
+
+
+.partButton:hover{
+
+    transform:translateY(-2px);
+
+}
+
+
+
+
+.partButton.active{
+
+    background:#1565c0;
+
+    color:white;
+
+}
+
+
+
+/* 説明カード */
+
+#info{
+
+    background:#fafafa;
+
+    padding:15px;
+
+    border-radius:12px;
+
+    line-height:1.7;
+
+}
+
+
+
+/* 操作ボタン */
+
+.viewer-tools button{
+
+
+    width:100%;
+
+    height:45px;
+
+    margin-bottom:10px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#333;
+
+    color:white;
+
+    font-size:15px;
+
+    cursor:pointer;
+
+}
+
+
+
+.viewer-tools button:hover{
+
+    opacity:.8;
+
+}
+
+
+
+/* 標本情報 */
+
+.specimen-info{
+
+    border-radius:20px;
+
+}
+
+
+/* スマホ */
+
+@media(max-width:900px){
+
+
+    .viewer-area{
+
+        flex:auto;
+
+    }
+
+
+    .control-area{
+
+        width:100%;
+
+    }
+
+
+}
