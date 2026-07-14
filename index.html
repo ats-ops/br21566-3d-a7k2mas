@@ -3,18 +3,21 @@
 
 <head>
 
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
-<title>骨格標本3Dビューア</title>
+    <title>骨格標本3Dビューア</title>
 
-<link rel="stylesheet" href="style.css">
+    <link rel="stylesheet"
+          href="style.css">
 
-<script
-type="module"
-src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js">
-</script>
+    <!-- model-viewer -->
+    <script
+        type="module"
+        src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js">
+    </script>
 
 </head>
 
@@ -22,7 +25,7 @@ src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.j
 
 <header>
 
-    <h1>骨格標本 3Dビューア</h1>
+    <h1>骨格標本3Dビューア</h1>
 
     <p>3D Scan Specimen Viewer</p>
 
@@ -30,9 +33,9 @@ src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.j
 
 <main>
 
-    <!-- =========================
-         3D Viewer
-    ========================= -->
+    <!--=========================
+            左側：メイン3D
+    ==========================-->
 
     <section class="viewer-area">
 
@@ -76,34 +79,13 @@ src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.j
 
 
 
-    <!-- =========================
-         右側UI
-    ========================= -->
+    <!--=========================
+            右側UI
+    ==========================-->
 
     <section class="control-area">
 
-
-        <!-- =========================
-             標本比較
-        ========================= -->
-
-        <div id="compare-panel">
-
-            <h2>標本比較</h2>
-
-            <div id="compare-content">
-
-                部位を選択すると比較が表示されます。
-
-            </div>
-
-        </div>
-
-
-
-        <!-- =========================
-             標本選択
-        ========================= -->
+        <!-- 標本選択 -->
 
         <div class="model-select">
 
@@ -112,15 +94,11 @@ src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.j
             <select id="model-select">
 
                 <option value="3593">
-
                     SINH-MA-835　ヒグマ頭骨
-
                 </option>
 
                 <option value="4127">
-
                     SINH-MA-770　ツキノワグマ頭骨
-
                 </option>
 
             </select>
@@ -129,9 +107,7 @@ src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.j
 
 
 
-        <!-- =========================
-             部位一覧
-        ========================= -->
+        <!-- 部位一覧 -->
 
         <div>
 
@@ -145,9 +121,7 @@ src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.j
 
 
 
-        <!-- =========================
-             説明
-        ========================= -->
+        <!-- 説明 -->
 
         <div id="info">
 
@@ -161,12 +135,46 @@ src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.j
 
         </div>
 
+
+
+        <!--=========================
+             比較3Dビューア
+        ==========================-->
+
+        <div id="preview-panel">
+
+            <h2>比較標本</h2>
+
+            <model-viewer
+
+                id="preview-viewer"
+
+                camera-controls
+
+                auto-rotate
+
+                shadow-intensity="1"
+
+                environment-image="neutral"
+
+                exposure="0.8"
+
+                tone-mapping="neutral"
+
+                background-color="#000000"
+
+                loading="lazy">
+
+            </model-viewer>
+
+        </div>
+
     </section>
 
 </main>
-<!-- =========================
-     標本情報
-========================= -->
+<!--=========================
+        標本情報
+==========================-->
 
 <section class="specimen-info">
 
@@ -220,23 +228,25 @@ src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.j
 
 
 
-<!-- =========================
-     Footer
-========================= -->
+<!--=========================
+        Footer
+==========================-->
 
 <footer>
 
     <p>
+
         © 2026 Bear Skull 3D Viewer
+
     </p>
 
 </footer>
 
 
 
-<!-- =========================
-     JavaScript
-========================= -->
+<!--=========================
+        JavaScript
+==========================-->
 
 <script type="module" src="js/viewer.js"></script>
 
