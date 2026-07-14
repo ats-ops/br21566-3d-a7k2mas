@@ -38,9 +38,6 @@ import {
 const viewer =
     document.getElementById("viewer");
 
-const previewViewer =
-    document.getElementById("preview-viewer");
-
 const panel =
     document.getElementById("panel");
 
@@ -49,9 +46,6 @@ const info =
 
 const modelSelect =
     document.getElementById("model-select");
-
-const compareContent =
-    document.getElementById("compare-content");
 
 
 // -----------------------------
@@ -63,42 +57,15 @@ let currentSpecimenID = "3593";
 let currentSpecimen =
     specimens[currentSpecimenID];
 
+// 現在選択中の部位
 let currentPart = null;
-
-
-// =====================================================
-// 比較モデル更新
-// =====================================================
-
-function updatePreviewModel(){
-
-    if(!previewViewer){
-
-        return;
-
-    }
-
-    if(currentSpecimenID === "3593"){
-
-        previewViewer.src =
-            specimens["4127"].file;
-
-    }
-    else{
-
-        previewViewer.src =
-            specimens["3593"].file;
-
-    }
-
-}
 // =====================================================
 // 標本変更
 // =====================================================
 
 function changeModel(id){
 
-    // 存在確認
+    // 標本が存在するか確認
     if(!specimens[id]){
 
         console.error(
@@ -116,17 +83,14 @@ function changeModel(id){
     currentSpecimen =
         specimens[id];
 
-    // メインモデル変更
+    // モデル変更
     viewer.src =
         currentSpecimen.file;
-
-    // 比較モデル更新
-    updatePreviewModel();
 
     // ピン削除
     clearAllPins(viewer);
 
-    // 選択解除
+    // 選択状態解除
     clearActiveButton();
 
     currentPart = null;
@@ -136,7 +100,7 @@ function changeModel(id){
         currentSpecimen
     );
 
-    // 部位ボタン生成
+    // 部位ボタン更新
     createPartButtons(
 
         panel,
@@ -147,24 +111,14 @@ function changeModel(id){
 
     );
 
-    // 説明を初期状態へ
+    // 説明を初期状態へ戻す
     showDefaultInfo(info);
-
-    // 比較説明を初期状態へ
-    if(compareContent){
-
-        compareContent.innerHTML = `
-            部位を選択すると、
-            比較標本が表示されます。
-        `;
-
-    }
 
 }
 
 
 // =====================================================
-// モデル選択
+// 標本選択イベント
 // =====================================================
 
 if(modelSelect){
@@ -199,21 +153,16 @@ function showPart(partName){
 
         showDefaultInfo(info);
 
-        if(compareContent){
-
-            compareContent.innerHTML =
-                "部位を選択してください。";
-
-        }
-
         currentPart = null;
 
         return;
 
     }
 
+    // 現在の部位
     currentPart = partName;
 
+    // 部位データ取得
     const part =
         getPartData(
             currentSpecimen,
@@ -222,11 +171,19 @@ function showPart(partName){
 
     if(!part){
 
+        console.warn(
+            "部位データがありません:",
+            partName
+        );
+
         return;
 
     }
 
-    // メインモデルにピン表示
+    // 既存のピン削除
+    clearPin();
+
+    // ピン表示
     createPin(
 
         viewer,
@@ -236,8 +193,11 @@ function showPart(partName){
         (selectedPart)=>{
 
             showDescription(
+
                 info,
+
                 selectedPart
+
             );
 
         }
@@ -246,82 +206,12 @@ function showPart(partName){
 
     // 説明表示
     showDescription(
+
         info,
+
         part
+
     );
-
-
-
-    // ==========================
-    // 比較モデル更新
-    // ==========================
-
-    const compareID =
-        currentSpecimenID === "3593"
-            ? "4127"
-            : "3593";
-
-    const comparePart =
-        specimens[compareID].parts[partName];
-
-    if(previewViewer){
-
-        previewViewer.src =
-            specimens[compareID].file;
-
-        if(comparePart){
-
-            if(comparePart.orbit){
-
-                previewViewer.cameraOrbit =
-                    comparePart.orbit;
-
-            }
-
-            if(comparePart.target){
-
-                previewViewer.cameraTarget =
-                    comparePart.target;
-
-            }
-
-        }
-
-    }
-
-
-
-    // ==========================
-    // 比較説明
-    // ==========================
-
-    if(compareContent){
-
-        compareContent.innerHTML = `
-
-            <h3>${partName}</h3>
-
-            <h4>${currentSpecimen.name}</h4>
-
-            <p>${part.text}</p>
-
-            <hr>
-
-            <h4>${specimens[compareID].name}</h4>
-
-            <p>
-
-                ${
-                    comparePart
-                        ? comparePart.text
-                        : "この部位のデータはありません。"
-                }
-
-            </p>
-
-        `;
-
-    }
 
 }
 // =====================================================
@@ -344,7 +234,7 @@ viewer.addEventListener(
 
 
 // =====================================================
-// エラー
+// model-viewer エラー
 // =====================================================
 
 viewer.addEventListener(
@@ -393,18 +283,6 @@ function initialize(){
 
     );
 
-    // 比較モデル表示
-    updatePreviewModel();
-
-    // 比較説明初期化
-    if(compareContent){
-
-        compareContent.innerHTML =
-
-            "部位を選択すると比較標本が表示されます。";
-
-    }
-
     console.log(
 
         "Viewer Initialized"
@@ -437,14 +315,12 @@ window.addEventListener(
 
 window.viewerApp = {
 
-    changeModel,
-
-    showPart,
+    viewer,
 
     specimens,
 
-    viewer,
+    changeModel,
 
-    previewViewer
+    showPart
 
 };
