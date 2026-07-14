@@ -73,77 +73,69 @@ let currentSpecimen =
 // 標本変更
 // =====================================================
 
+// =====================================================
+// 標本変更
+// =====================================================
+
 function changeModel(id){
 
-
     if(!specimens[id]){
-
 
         console.error(
             "標本がありません:",
             id
         );
 
-
         return;
-
 
     }
 
-
-
+    // 現在の標本更新
     currentSpecimenID = id;
-
 
     currentSpecimen =
         specimens[id];
 
-
-
     // モデル変更
-
     viewer.src =
         currentSpecimen.file;
 
-
-
     // ピン削除
-
     clearAllPins(viewer);
 
+    // ボタン選択解除
+    clearActiveButton();
 
+    // 選択部位解除
+    currentPart = null;
 
-    // UI更新
-
+    // 標本情報更新
     updateSpecimenInfo(
         currentSpecimen
     );
 
-
-
+    // 部位ボタン再生成
     createPartButtons(
-
         panel,
-
         currentSpecimen,
-
         showPart
-
     );
 
-
-
-    clearActiveButton();
-
-
-
+    // 説明を初期状態に戻す
     showDefaultInfo(info);
 
+    // 比較パネル初期化
+    const compare =
+        document.getElementById("compare-content");
 
+    if(compare){
+
+        compare.innerHTML =
+            "部位を選択してください。";
+
+    }
 
 }
-
-
 
 // =====================================================
 // 部位選択
@@ -297,10 +289,6 @@ if(modelSelect){
         }
 
     );
-currentPart = null;
-
-document.getElementById("compare-content").innerHTML =
-    "部位を選択してください。";
 
 }
 
