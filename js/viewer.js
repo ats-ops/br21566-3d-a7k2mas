@@ -22,7 +22,7 @@ import {
     clearActiveButton
 
 } from "./ui.js";
-
+let currentPart = null;
 
 import {
 
@@ -150,52 +150,52 @@ function changeModel(id){
 // 部位選択
 // =====================================================
 
+// 現在選択中の部位
+let currentPart = null;
+
 function showPart(partName){
 
+    // 同じ部位を押したら解除
+    if(currentPart === partName){
 
-    const part =
-        getPartData(
+        clearPin();
 
-            currentSpecimen,
+        clearActiveButton();
 
-            partName
+        showDefaultInfo(info);
 
-        );
+        // 比較パネル初期化
+        document.getElementById("compare-content").innerHTML =
+            "部位を選択してください。";
 
-
-
-    if(!part){
+        currentPart = null;
 
         return;
-
     }
 
+    currentPart = partName;
 
+    const part = getPartData(currentSpecimen, partName);
+
+    if(!part){
+        return;
+    }
 
     // ピン表示
-
     createPin(
-
         viewer,
-
         part,
-
         (selectedPart)=>{
-
-
-            showDescription(
-
-                info,
-
-                selectedPart
-
-            );
-
-
+            showDescription(info, selectedPart);
         }
-
     );
 
+    // 説明表示
+    showDescription(info, part);
+
+    // 比較表示
+    showCompare(partName);
+}
 
 
     // 説明表示
