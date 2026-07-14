@@ -63,7 +63,7 @@ export const specimen4127 = {
 
             name:"下顎",
 
-            position:"98.412 -52.569 8.719",
+            position:"108.412 -32.569 2.719",
 
             text:
             "咀嚼を行う骨。強力な咬筋が付着する。"
@@ -75,7 +75,7 @@ export const specimen4127 = {
 
             name:"眼窩",
 
-            position:"40.420 26.828 -21.885",
+            position:"30.420 26.828 -21.885",
 
             text:
             "眼球が収まる空間。視覚に関係する部位。"
@@ -87,7 +87,7 @@ export const specimen4127 = {
 
             name:"犬歯",
 
-            position:"100.775 -35.866 -19.92",
+            position:"100.775 -31.866 -28.92",
 
             text:
             "捕食や防御に使用される発達した歯。ツキノワグマでは鋭く発達している。"
@@ -99,7 +99,7 @@ export const specimen4127 = {
 
             name:"鼻骨",
 
-            position:"94 26.265 4.615",
+            position:"94 40.265 13.615",
 
             text:
             "鼻部を形成する骨。嗅覚器官を支える。"
