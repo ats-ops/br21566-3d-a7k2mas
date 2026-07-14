@@ -172,6 +172,25 @@ function showPart(partName){
 
         return;
     }
+    function showCompare(partName){
+
+    const compare = document.getElementById("compare-content");
+
+    const brown = specimens["3593"].parts[partName];
+    const black = specimens["4127"].parts[partName];
+
+    compare.innerHTML = `
+        <h3>${partName}</h3>
+
+        <h4>ヒグマ（3593）</h4>
+        <p>${brown.text}</p>
+
+        <hr>
+
+        <h4>ツキノワグマ（4127）</h4>
+        <p>${black.text}</p>
+    `;
+}
 
     currentPart = partName;
 
