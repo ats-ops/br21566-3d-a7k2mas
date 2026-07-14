@@ -3,21 +3,23 @@
 
 <head>
 
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
 
-    <title>骨格標本3Dビューア</title>
+<title>
+骨格標本3Dビューア
+</title>
 
-    <link rel="stylesheet"
-          href="style.css">
+<link rel="stylesheet"
+      href="style.css">
 
-    <!-- model-viewer -->
-    <script
-        type="module"
-        src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js">
-    </script>
+<!-- model-viewer -->
+<script
+type="module"
+src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js">
+</script>
 
 </head>
 
@@ -25,17 +27,18 @@
 
 <header>
 
-    <h1>骨格標本3Dビューア</h1>
+    <h1>骨格標本 3Dビューア</h1>
 
     <p>3D Scan Specimen Viewer</p>
 
 </header>
 
+
 <main>
 
-    <!--=========================
-            左側：メイン3D
-    ==========================-->
+    <!-- =========================
+         3D Viewer
+    ========================= -->
 
     <section class="viewer-area">
 
@@ -65,25 +68,27 @@
 
             rotation-per-second="12deg"
 
-            camera-orbit="90deg 75deg 5m"
+            camera-orbit="90deg 75deg 8m"
 
             field-of-view="40deg"
 
             interaction-prompt="auto"
 
-            loading="eager">
+            loading="eager"
+
+            style="background:#000;">
 
         </model-viewer>
 
     </section>
 
 
-
-    <!--=========================
-            右側UI
-    ==========================-->
+    <!-- =========================
+         右側UI
+    ========================= -->
 
     <section class="control-area">
+
 
         <!-- 標本選択 -->
 
@@ -106,7 +111,6 @@
         </div>
 
 
-
         <!-- 部位一覧 -->
 
         <div>
@@ -120,7 +124,6 @@
         </div>
 
 
-
         <!-- 説明 -->
 
         <div id="info">
@@ -129,52 +132,20 @@
 
             <p>
 
-                左側の部位ボタンを選択してください。
+                左側のモデルをドラッグして回転できます。<br>
+                部位ボタンを押すと、その部位へ移動して説明を表示します。
 
             </p>
-
-        </div>
-
-
-
-        <!--=========================
-             比較3Dビューア
-        ==========================-->
-
-        <div id="preview-panel">
-
-            <h2>比較標本</h2>
-
-            <model-viewer
-
-                id="preview-viewer"
-
-                camera-controls
-
-                auto-rotate
-
-                shadow-intensity="1"
-
-                environment-image="neutral"
-
-                exposure="0.8"
-
-                tone-mapping="neutral"
-
-                background-color="#000000"
-
-                loading="lazy">
-
-            </model-viewer>
 
         </div>
 
     </section>
 
 </main>
-<!--=========================
-        標本情報
-==========================-->
+
+    <!-- =========================
+     標本情報
+========================= -->
 
 <section class="specimen-info">
 
@@ -227,26 +198,22 @@
 </section>
 
 
-
-<!--=========================
-        Footer
-==========================-->
+<!-- =========================
+     Footer
+========================= -->
 
 <footer>
 
     <p>
-
         © 2026 Bear Skull 3D Viewer
-
     </p>
 
 </footer>
 
 
-
-<!--=========================
-        JavaScript
-==========================-->
+<!-- =========================
+     JavaScript
+========================= -->
 
 <script type="module" src="js/viewer.js"></script>
 
