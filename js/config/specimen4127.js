@@ -51,7 +51,7 @@ export const specimen4127 = {
 
             name:"頭頂部",
 
-            position:"30.023 85.368 17",
+            position:"-6.758 76.355 12.374",
 
             text:
             "頭蓋骨の最上部。脳を保護する役割を持つ部位。"
@@ -63,7 +63,7 @@ export const specimen4127 = {
 
             name:"下顎",
 
-            position:"-4.682 -45.525 132.909",
+            position:"129.412 -52.569 13.719",
 
             text:
             "咀嚼を行う骨。強力な咬筋が付着する。"
@@ -75,7 +75,7 @@ export const specimen4127 = {
 
             name:"眼窩",
 
-            position:"18.483 36.793 63.613",
+            position:"44.420 26.828 -21.885",
 
             text:
             "眼球が収まる空間。視覚に関係する部位。"
@@ -87,7 +87,7 @@ export const specimen4127 = {
 
             name:"犬歯",
 
-            position:"24.314 -18.262 165.959",
+            position:"126.775 -43.866 -15.92",
 
             text:
             "捕食や防御に使用される発達した歯。ツキノワグマでは鋭く発達している。"
@@ -99,7 +99,7 @@ export const specimen4127 = {
 
             name:"鼻骨",
 
-            position:"-1.67 42.0 132.5",
+            position:"105 26.265 8.615",
 
             text:
             "鼻部を形成する骨。嗅覚器官を支える。"
