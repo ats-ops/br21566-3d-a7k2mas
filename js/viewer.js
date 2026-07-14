@@ -307,7 +307,110 @@ window.addEventListener(
     }
 
 );
+document
+.getElementById("reset-camera")
+?.addEventListener(
 
+"click",
+
+()=>{
+
+
+viewer.cameraOrbit =
+"90deg 75deg 8m";
+
+
+viewer.fieldOfView =
+"40deg";
+
+
+clearPin();
+
+
+clearActiveButton();
+
+
+showDefaultInfo(info);
+
+
+}
+
+);
+
+let dark=true;
+
+
+document
+.getElementById("change-bg")
+?.addEventListener(
+
+"click",
+
+()=>{
+
+
+const mv =
+document.getElementById("viewer");
+
+
+dark=!dark;
+
+
+if(dark){
+
+    mv.style.background="#000";
+
+}
+else{
+
+    mv.style.background="#eeeeee";
+
+}
+
+
+}
+
+);
+
+let rotate=true;
+
+
+document
+.getElementById("toggle-rotate")
+?.addEventListener(
+
+"click",
+
+()=>{
+
+
+rotate=!rotate;
+
+
+const mv =
+document.getElementById("viewer");
+
+
+if(rotate){
+
+    mv.setAttribute(
+        "auto-rotate",
+        ""
+    );
+
+}
+else{
+
+    mv.removeAttribute(
+        "auto-rotate"
+    );
+
+}
+
+
+}
+
+);
 
 // =====================================================
 // デバッグ用
