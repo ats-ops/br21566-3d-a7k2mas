@@ -63,7 +63,7 @@ export const specimen4127 = {
 
             name:"下顎",
 
-            position:"111.412 -52.569 13.719",
+            position:"107.412 -52.569 8.719",
 
             text:
             "咀嚼を行う骨。強力な咬筋が付着する。"
@@ -75,7 +75,7 @@ export const specimen4127 = {
 
             name:"眼窩",
 
-            position:"37.420 26.828 -21.885",
+            position:"60.420 26.828 -21.885",
 
             text:
             "眼球が収まる空間。視覚に関係する部位。"
