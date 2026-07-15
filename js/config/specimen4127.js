@@ -99,7 +99,7 @@ export const specimen4127 = {
 
             name:"鼻骨",
 
-            position:"80.546 35.265 -1.542",
+            position:"78.546 35.265 -1.242",
 
             text:
             "鼻部を形成する骨。嗅覚器官を支える。"
